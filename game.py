@@ -6,14 +6,14 @@ pygame.init()
 
 # screen properties
 
-WIDTH = 1280
-HEIGHT = 720
+WIDTH = 1000
+HEIGHT = 700
 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 clock = pygame.time.Clock()
 running = True
 
-water_tile_lo = 'pattern_56.png'
+water_tile_lo = 'bg_02_h.png'
 water_tile_surface = pygame.image.load(water_tile_lo)
 
 tile_width = water_tile_surface.get_width()
