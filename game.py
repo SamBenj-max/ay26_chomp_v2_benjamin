@@ -1,5 +1,5 @@
 import pygame
-
+from planet_class import Planet
 # pygame setup
 pygame.init()
 
@@ -27,12 +27,17 @@ for x in range(0,WIDTH,tile_width):
     for y in range(0,HEIGHT,tile_height):
         background.blit(water_tile_surface,(x,y))
 
+planet1 = Planet('planet03.png')
+planet2 = Planet('planet02.png')
+planet3 = Planet('planet09.png')
+
+
 
 y_sand = HEIGHT - tile_height
 #for x in range(0,WIDTH,tile_height):
 
 
-
+print('blueS')
 
 
 
@@ -48,6 +53,9 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+    planet1.draw(screen)
+    planet2.draw(screen)
+    planet3.draw(screen)
 
     # fill the screen with a color to wipe away anything from last frame
     #screen.fill("purple")
