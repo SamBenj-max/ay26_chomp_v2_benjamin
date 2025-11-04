@@ -23,9 +23,16 @@ pygame.init()
 
 #init planets
 planet_list = pygame.sprite.Group() 
-for i in range(8):
-    random_path = choice(planet_assets)
-    planet_list.add(Planet(random_path))
+
+#for i in range(8):
+#    random_path = choice(planet_assets)
+#    planet_list.add(Planet(random_path))
+
+planet_count = 8
+
+
+
+
 
 
 #init player1
@@ -47,6 +54,12 @@ while running:
 
     #screen.blit(background,(0,0))
     background_scoll(screen)
+
+    #My loop to keep planets spawning after they are killed The loop gives whatever number i is to make a planet to run it.
+    planets = planet_count - len(planet_list)
+    for i in range(planets):
+        new_planets = Planet(choice(planet_assets))
+        planet_list.add(new_planets)
 
 
     planet_list.update()
