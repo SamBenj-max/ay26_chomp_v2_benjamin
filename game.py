@@ -1,49 +1,38 @@
 import pygame
-from planet_class import Planet
+from planet_class import Planet , planet_assets
+from random import choice
+from Bemo import Bemo
+from util import *
+from Background import *
+
+
+
+
 # pygame setup
 pygame.init()
 
 
 # screen properties
 
-WIDTH = 1000
-HEIGHT = 700
-
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-clock = pygame.time.Clock()
-running = True
-
-water_tile_lo = 'bg_02_h.png'
-water_tile_surface = pygame.image.load(water_tile_lo)
-
-tile_width = water_tile_surface.get_width()
-tile_height = water_tile_surface.get_height()
-
-
-
-background = pygame.Surface((WIDTH,HEIGHT))
-
-for x in range(0,WIDTH,tile_width):
-    for y in range(0,HEIGHT,tile_height):
-        background.blit(water_tile_surface,(x,y))
-
-planet1 = Planet('planet03.png')
-planet2 = Planet('planet02.png')
-planet3 = Planet('planet09.png')
-
-
-
-y_sand = HEIGHT - tile_height
-#for x in range(0,WIDTH,tile_height):
-
-
-print('blueS')
 
 
 
 
 
-screen.blit(background,(0,0))
+#print('blueS')
+
+#init planets
+planet_list = pygame.sprite.Group() 
+for i in range(8):
+    random_path = choice(planet_assets)
+    planet_list.add(Planet(random_path))
+
+
+#init player1
+player1 = Bemo()
+
+
+
 
 
 
@@ -53,9 +42,20 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    planet1.draw(screen)
-    planet2.draw(screen)
-    planet3.draw(screen)
+    
+    player1.move()
+
+    #screen.blit(background,(0,0))
+    background_scoll(screen)
+
+
+    planet_list.update()
+    
+    planet_list.draw(screen)
+
+    
+
+    player1.draw(screen)
 
     # fill the screen with a color to wipe away anything from last frame
     #screen.fill("purple")
