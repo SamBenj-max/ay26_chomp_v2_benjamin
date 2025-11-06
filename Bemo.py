@@ -45,18 +45,18 @@ class Bemo(pygame.sprite.Sprite):
 
         #Boundaries 
 
-        if self.x <=48: 
-            self.x = 48
+        if self.x <= x_bounds: 
+            self.x = x_bounds
 
-        if self.x >= WIDTH-48:
-            self.x = WIDTH-48
+        if self.x >= WIDTH - x_bounds:
+            self.x = WIDTH - x_bounds
 
 
-        if self.y <=38: 
-            self.y = 38
+        if self.y <= 48: 
+            self.y = 48
 
-        if self.y >= WIDTH-380:
-            self.y = WIDTH-380
+        if self.y >= WIDTH - y_bounds:
+            self.y = WIDTH - y_bounds
 
 
         

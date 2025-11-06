@@ -1,6 +1,7 @@
 WIDTH = 1000
 HEIGHT = 700
-
+x_bounds = 58
+y_bounds = 380
 
 planet_assets = [
 'Planets/planet00.png',
