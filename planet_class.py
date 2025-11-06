@@ -28,7 +28,7 @@ class Planet(pygame.sprite.Sprite):
 
         self.vx = 0
 
-        self.vy = randint(1,3)
+        self.vy = randint(1,5)
 
     
     def draw(self, screen):
@@ -46,11 +46,13 @@ class Planet(pygame.sprite.Sprite):
             self.kill()
             
 
-            
-            
+
+
             #self.y = 0
             #self.x = randint(40,WIDTH-40)
            #random_path = choice(planet_assets)
+
+        
 
 
 

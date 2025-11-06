@@ -23,7 +23,7 @@ class Bemo(pygame.sprite.Sprite):
         # blit the planets surface on my star background
         screen.blit(self.image, self.rect) 
     
-    def move(self):
+    def move(self, player, group):
         #get key for what player pressed
         self.player_key = pygame.key.get_pressed()
 
@@ -41,3 +41,31 @@ class Bemo(pygame.sprite.Sprite):
             self.x += 4
         
         self.rect.center = (self.x, self.y)
+
+
+        #Boundaries 
+
+        if self.x <=48: 
+            self.x = 48
+
+        if self.x >= WIDTH-48:
+            self.x = WIDTH-48
+
+
+        if self.y <=38: 
+            self.y = 38
+
+        if self.y >= WIDTH-380:
+            self.y = WIDTH-380
+
+
+        
+
+        #Collison for Bemo
+        self.collided_planets = pygame.sprite.spritecollide(player, group, False)
+
+        if self.collided_planets:
+            self.kill()
+
+    
+        

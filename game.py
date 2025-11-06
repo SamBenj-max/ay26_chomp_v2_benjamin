@@ -28,7 +28,7 @@ planet_list = pygame.sprite.Group()
 #    random_path = choice(planet_assets)
 #    planet_list.add(Planet(random_path))
 
-planet_count = 8
+planet_count = 10
 
 
 
@@ -50,7 +50,8 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    player1.move()
+    player1.move(player1,planet_list)
+    planet_list.update()
 
     #screen.blit(background,(0,0))
     background_scoll(screen)
@@ -60,15 +61,20 @@ while running:
     for i in range(planets):
         new_planets = Planet(choice(planet_assets))
         planet_list.add(new_planets)
+        new_planets.y = -10
 
 
-    planet_list.update()
+    
     
     planet_list.draw(screen)
 
     
 
     player1.draw(screen)
+
+    
+
+
 
     # fill the screen with a color to wipe away anything from last frame
     #screen.fill("purple")
