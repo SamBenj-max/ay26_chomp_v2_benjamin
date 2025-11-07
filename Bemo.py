@@ -1,11 +1,14 @@
 import pygame
 from util import *
 
-class Bemo(pygame.sprite.Sprite):
+class Bemo(pygame.sprite.Group):
     def __init__(self,x=WIDTH*.5,y=700*.8):
 
         super().__init__()
         
+        #Bemo is alive 
+        self.is_alive = True
+
         #Position on screen of Bemo
         self.x = x
         self.y = y
@@ -21,9 +24,11 @@ class Bemo(pygame.sprite.Sprite):
 
     def draw(self, screen):
         # blit the planets surface on my star background
-        screen.blit(self.image, self.rect) 
+        if self.is_alive == True:
+            screen.blit(self.image, self.rect) 
+        
     
-    def move(self, player, group):
+    def move(self):
         #get key for what player pressed
         self.player_key = pygame.key.get_pressed()
 
@@ -62,10 +67,18 @@ class Bemo(pygame.sprite.Sprite):
         
 
         #Collison for Bemo
-        self.collided_planets = pygame.sprite.spritecollide(player, group, False)
+    def collide(self, planet_group):
+    
+    
+        collided_planets = pygame.sprite.spritecollide(self, planet_group, True)
 
-        if self.collided_planets:
+        if collided_planets:
+           
+            score += 10 
+
             self.kill()
+            #self.is_alive = False 
+            print("Bemo was hit and killed!")
 
     
         

@@ -1,7 +1,13 @@
+import pygame
 WIDTH = 1000
 HEIGHT = 700
 x_bounds = 58
 y_bounds = 380
+
+pygame.init()
+
+score = 0
+font = pygame.font.Font(None, 36)
 
 planet_assets = [
 'Planets/planet00.png',
@@ -16,7 +22,23 @@ planet_assets = [
 'Planets/planet09.png'
 ]
 
-    #background_y %= tile_height
+    
 
 
+#score keeping
 
+def draw_score(screen):
+    # Make global variables for access in Bemo's update class
+    global score
+    global font
+    
+    #Making the Score 
+    score_text = f"Score: {score}"
+    #Render in white
+    score_surface = font.render(score_text, True, (255, 255, 255))
+    
+    #position of score
+    score_rect = score_surface.get_rect()
+    score_rect.topleft = (10, 10) 
+    
+    screen.blit(score_surface, score_rect)

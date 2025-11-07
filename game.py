@@ -50,8 +50,10 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    player1.move(player1,planet_list)
+    player1.move()
     planet_list.update()
+
+    #player1.collide(planet_list)
 
     #screen.blit(background,(0,0))
     background_scoll(screen)
@@ -63,7 +65,7 @@ while running:
         planet_list.add(new_planets)
         new_planets.y = -10
 
-
+    
     
     
     planet_list.draw(screen)
@@ -71,9 +73,9 @@ while running:
     
 
     player1.draw(screen)
-
+    player1.collide(planet_list)
     
-
+    draw_score(screen)
 
 
     # fill the screen with a color to wipe away anything from last frame
