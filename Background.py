@@ -54,3 +54,6 @@ def background_scoll(screen):
     #Make background smooth transition from bottom to top
     if background_y == HEIGHT:
         background_y = 0
+
+    
+    

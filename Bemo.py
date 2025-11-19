@@ -1,7 +1,10 @@
 import pygame
 from util import *
 
-class Bemo(pygame.sprite.Group):
+
+
+
+class Bemo(pygame.sprite.Sprite):
     def __init__(self,x=WIDTH*.5,y=700*.8):
 
         super().__init__()
@@ -13,11 +16,13 @@ class Bemo(pygame.sprite.Group):
         self.x = x
         self.y = y
         
+        
+
         #Velocity of Bemo
         #self.vx += self.x
         #self.vy += self.y
 
-        self.image = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Characters/platformChar_jump.png').convert_alpha()\
+        self.image = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Characters/platformChar_jump.png').convert_alpha()
         
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y)
@@ -26,6 +31,8 @@ class Bemo(pygame.sprite.Group):
         # blit the planets surface on my star background
         if self.is_alive == True:
             screen.blit(self.image, self.rect) 
+        
+       
         
     
     def move(self):
@@ -64,21 +71,101 @@ class Bemo(pygame.sprite.Group):
             self.y = WIDTH - y_bounds
 
 
+    
+    def hearts(self, planet_list, screen):
+        global hit_cooldown
+        global lives
         
 
+        
+
+        if hit_cooldown > 0:
+            hit_cooldown -= 1
+
+            if hit_cooldown == 0:
+                self.image = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Characters/platformChar_jump.png').convert_alpha()
+
+            
+
+
+        elif pygame.sprite.spritecollide(self, planet_list, False):  
+            
+            for p in planet_list: 
+                
+                if pygame.sprite.collide_mask(self, p):
+                    p.kill()
+                    hit_cooldown = 60
+                    print('Bemo was Hit')
+                    lives -=1
+                    self.image = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Characters/platformChar_duck.png').convert_alpha()
+                    print(lives)
+            
+                
+            
+
+        if lives <= 0:
+            self.is_alive = False
+    
+        if lives ==3:
+            self.heart_image = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Items/platformPack_item017.png')
+            self.heart_image_rect = self.heart_image.get_rect()
+            self.heart_image_rect.topright = (WIDTH-80, 10) 
+        
+            screen.blit(self.heart_image, self.heart_image_rect)
+
+
+            self.heart_image2 = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Items/platformPack_item017.png')
+            self.heart_image2_rect = self.heart_image2.get_rect()
+            self.heart_image2_rect.topright = (WIDTH-110, 10) 
+        
+            screen.blit(self.heart_image2, self.heart_image2_rect)
+
+
+
+            self.heart_image3 = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Items/platformPack_item017.png')
+            self.heart_image3_rect = self.heart_image3.get_rect()
+            self.heart_image3_rect.topright = (WIDTH-140, 10) 
+        
+            screen.blit(self.heart_image3, self.heart_image3_rect)
+
+        elif lives == 2:
+            self.heart_image2 = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Items/platformPack_item017.png')
+            self.heart_image2_rect = self.heart_image2.get_rect()
+            self.heart_image2_rect.topright = (WIDTH-110, 10) 
+        
+            screen.blit(self.heart_image2, self.heart_image2_rect)
+
+
+
+            self.heart_image3 = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Items/platformPack_item017.png')
+            self.heart_image3_rect = self.heart_image3.get_rect()
+            self.heart_image3_rect.topright = (WIDTH-140, 10) 
+        
+            screen.blit(self.heart_image3, self.heart_image3_rect)
+
+        elif lives == 1:
+            self.heart_image3 = pygame.image.load('Planets/kenney_simplified-platformer-pack/PNG/Items/platformPack_item017.png')
+            self.heart_image3_rect = self.heart_image3.get_rect()
+            self.heart_image3_rect.topright = (WIDTH-140, 10) 
+        
+            screen.blit(self.heart_image3, self.heart_image3_rect)
+        
+        
+
+
+
         #Collison for Bemo
-    def collide(self, planet_group):
+    #def collide(self, planet_group):
     
-    
-        collided_planets = pygame.sprite.spritecollide(self, planet_group, True)
+        #sprites collide to 
+        #collided_planets = pygame.sprite.spritecollide(self, planet_group, True)
 
-        if collided_planets:
+        #if collided_planets:
            
-            score += 10 
 
-            self.kill()
-            #self.is_alive = False 
-            print("Bemo was hit and killed!")
+           
+       #     self.is_alive = False 
+        #    print("Bemo was hit and killed!")
 
     
         

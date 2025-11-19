@@ -4,7 +4,8 @@ from random import choice
 from Bemo import Bemo
 from util import *
 from Background import *
-
+from score import *
+from finalscorebackground import deathbackground
 
 
 
@@ -39,8 +40,7 @@ planet_count = 10
 player1 = Bemo()
 
 
-
-
+score_list = []
 
 
 while running:
@@ -50,33 +50,64 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    player1.move()
-    planet_list.update()
+    if player1.is_alive == True:
 
-    #player1.collide(planet_list)
 
-    #screen.blit(background,(0,0))
-    background_scoll(screen)
+        player1.move()
+        planet_list.update()
 
-    #My loop to keep planets spawning after they are killed The loop gives whatever number i is to make a planet to run it.
-    planets = planet_count - len(planet_list)
-    for i in range(planets):
-        new_planets = Planet(choice(planet_assets))
-        planet_list.add(new_planets)
-        new_planets.y = -10
+        #player1.collide(planet_list)
+
+        #screen.blit(background,(0,0))
+        
+        background_scoll(screen)
+   
+        
+        
+        
+        #My loop to keep planets spawning after they are killed The loop gives whatever number i is to make a planet to run it.
+        planets = planet_count - len(planet_list)
+        for i in range(planets):
+            new_planets = Planet(choice(planet_assets))
+            planet_list.add(new_planets)
+            new_planets.y = -10
+
+
 
     
     
-    
-    planet_list.draw(screen)
+        planet_list.draw(screen)
 
     
 
-    player1.draw(screen)
-    player1.collide(planet_list)
-    
-    draw_score(screen)
+        player1.draw(screen)
+        #player1.collide(planet_list)
 
+        score1 = draw_score(screen)
+        print(score1)
+
+        #if score1 > 100:
+        #     planet_count += 1
+        
+
+        player1.hearts(planet_list, screen)
+             
+        #if pygame.sprite.collide_circle(player1, planet_list):
+         #       player1.is_alive = False
+
+    final_score
+
+    if player1.is_alive == False:
+        deathbackground(screen,score1)
+        
+
+        restart_button = pygame.key.get_pressed()
+
+    
+        if restart_button[pygame.K_SPACE]:
+                    player1.is_alive = True
+                    print('Bemo is back')
+            
 
     # fill the screen with a color to wipe away anything from last frame
     #screen.fill("purple")
@@ -89,3 +120,4 @@ while running:
     clock.tick(60)  # limits FPS to 60
 
 pygame.quit()
+

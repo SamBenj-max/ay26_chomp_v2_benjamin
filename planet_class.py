@@ -20,15 +20,15 @@ class Planet(pygame.sprite.Sprite):
         planet_image = pygame.image.load(image_filename).convert_alpha()
         self.image = pygame.transform.scale(planet_image, (self.size, self.size))
         
-        self.x = randint(self.size, screen_width - self.size)
-        self.y = randint(self.size, screen_height//2 - self.size)
+        self.x = randint(self.size, WIDTH - self.size)
+        self.y = randint(self.size, HEIGHT//2 - self.size)
         
         self.rect = self.image.get_rect()
         self.rect.center = (self.x, self.y)
 
         self.vx = 0
 
-        self.vy = randint(1,5)
+        self.vy = randint(1,8)
 
     
     def draw(self, screen):
