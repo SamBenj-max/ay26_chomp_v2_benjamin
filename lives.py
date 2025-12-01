@@ -6,4 +6,3 @@ from Bemo import *
 pygame.init()
 
 
-

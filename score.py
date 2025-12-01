@@ -1,27 +1,27 @@
 import pygame
 from util import *
 
-pygame.init()
-
-score_list = []
+#pygame.init()
 
 
 
-clock1 = 0 
+
+#settting the start time to 0 for the ability to reset the time later on. 
+start_time = 0 
 
 
 
 
 def draw_score(screen):
-    # Make global variables for access in Bemo's update class
-    #global score
-    #global clock1
     
-    clock2 = pygame.time.get_ticks()
+   
+    #start the time as the game starts 
+    clock = pygame.time.get_ticks()
 
-    score = ((clock2 - clock1)//1000)*10
-    
-    clock2 = clock1
+
+    #allows for the score to be calculated by each second elasped 10 points will be added(see why clock-startine works below)
+    score = ((clock - start_time)//1000)*10
+ 
 
 
     #Making the Score 
@@ -34,12 +34,30 @@ def draw_score(screen):
     score_rect.topleft = (10, 10) 
     
     
-
+    #actually drawing the score
     screen.blit(score_surface, score_rect)
 
     return score
 
-final_score = score
+
+
+def reset_score(): 
+    #can change the variable globally
+    global start_time
+
+    #makes the start time = to the current time the game was going so it can then subtract from the ealrier functiion
+    start_time = pygame.time.get_ticks()
+
+    
+   
+   
+
+    
+    
+    
+
+    
+    
 
 
 

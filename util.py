@@ -7,7 +7,7 @@ y_bounds = 380
 pygame.init()
 
 score = 0
-font = pygame.font.Font(None, 36)
+font = pygame.font.SysFont('Papyrus', 72)
 
 planet_assets = [
 'Planets/planet00.png',

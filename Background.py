@@ -7,7 +7,7 @@ clock = pygame.time.Clock()
 running = True
 
 #Loading specific background image
-space_tile_location = 'jug.jpg'
+space_tile_location = 'image_backgrounds/jug.jpg'
 space_tile_surface = pygame.image.load(space_tile_location)
 
 
@@ -15,7 +15,7 @@ space_tile_surface = pygame.image.load(space_tile_location)
 tile_width = space_tile_surface.get_width()
 tile_height = space_tile_surface.get_height()
 
-
+#setting the parameters for background such as WIDTH and Height
 background = pygame.Surface((WIDTH,HEIGHT))
 
 #Taking each tile and placing it accordingly across the screen to properly blit
@@ -23,7 +23,9 @@ for x in range(0,WIDTH,tile_width):
     for y in range(0,HEIGHT,tile_height):
         background.blit(space_tile_surface,(x,y))
 
-y_sand = HEIGHT - tile_height
+
+#allows for scrolling through the background and allows me to telepot
+
 
 
 #background scroll
